@@ -5,6 +5,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../public/icons/logo.png';
 import { ModeToggle } from '@/components/mode-toggle';
+import { Button } from "@/components/ui/button"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const Header: React.FC = () => {
     const { currentUser, logout } = useAuth();
@@ -19,8 +26,18 @@ const Header: React.FC = () => {
                     <ModeToggle />
                     {currentUser ? (
                         <div className='flex gap-5 items-center'>
-                            <span>{currentUser.email}</span>
-                            <button onClick={logout}>Log Out</button>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline">
+                                        <span className="">{currentUser.email}</span>
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    <DropdownMenuItem >
+                                        <button onClick={logout}>Log Out</button>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         </div>
                     ) : (
                         <div className='flex gap-5 items-center'>
