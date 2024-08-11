@@ -64,6 +64,7 @@ const SignupForm: React.FC = () => {
                             className="mt-1"
                         />
                     </div>
+                    <p>Already have an account? <a className='text-blue-500' href="/login">login</a></p>
                     <Button type="submit" className="w-full mt-4">Sign Up</Button>
                 </form>
             </CardContent>

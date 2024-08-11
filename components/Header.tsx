@@ -40,7 +40,7 @@ const Header: React.FC = () => {
                             </DropdownMenu>
                         </div>
                     ) : (
-                        <div className='flex gap-5 items-center'>
+                        <div className='flex gap-5 items-center text-black'>
                             <Link href="/signup">
                                 Sign Up
                             </Link>

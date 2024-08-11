@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { AuthProvider } from "@/components/Auth";
 import Header from "@/components/Header";
-import React from "react";
-import SideBar from "@/components/SideBar";
 import { ThemeProvider } from "@/components/theme-provider";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import React from "react";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,9 +28,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <AuthProvider>
-            <div className="flex h-auto">
-              <SideBar />
-              <div className="w-full">
+            <div className="w-full bg-[linear-gradient(90deg,#faaca8+10%,#ddd6f3+90%)] min-h-screen">
+              <div className="container mx-auto ">
                 <Header />
                 <main>{children}</main>
               </div>

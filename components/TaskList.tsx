@@ -17,6 +17,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import TaskListLoading from '@/components/TaskListLoading';
 
 interface Task {
     id: string;
@@ -29,9 +30,11 @@ interface Task {
 const TaskList: React.FC = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const { currentUser } = useAuth();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (currentUser) {
+            setLoading(true);
             const q = query(collection(db, 'tasks', currentUser.uid, 'userTasks'));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 const tasksData: Task[] = [];
@@ -39,6 +42,7 @@ const TaskList: React.FC = () => {
                     const data = doc.data();
                     tasksData.push({ id: doc.id, ...data } as Task);
                 });
+                setLoading(false);
                 setTasks(tasksData);
             });
 
@@ -74,14 +78,15 @@ const TaskList: React.FC = () => {
 
     return (
         <ul className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+            {loading ? <TaskListLoading /> : ''}
             {sortedTasks.map((task) => (
                 <Card
                     key={task.id}
                     className={`w-full border ${task.priority === 3
-                            ? 'border-red-500'
-                            : task.priority === 2
-                                ? 'border-yellow-500'
-                                : 'border-green-500'
+                        ? 'border-red-500'
+                        : task.priority === 2
+                            ? 'border-yellow-500'
+                            : 'border-green-500'
                         } ${task.completed ? 'opacity-60 bg-gray-200' : ''}`}
                 >
                     <CardHeader className='flex justify-between w-full'>

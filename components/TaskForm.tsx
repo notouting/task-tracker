@@ -20,6 +20,7 @@ import {
 import { db } from '@/firebaseConfig';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import React, { useState } from 'react';
+import Hero from '@/components/Hero';
 
 const TaskForm: React.FC = () => {
     const { currentUser } = useAuth();
@@ -28,19 +29,22 @@ const TaskForm: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (currentUser) {
+        const currentTask: string = task
+        setTask('');
+        if (currentUser && currentTask.length > 0) {
             try {
                 await addDoc(collection(db, 'tasks', currentUser.uid, 'userTasks'), {
-                    task,
+                    currentTask,
                     completed: false,
                     priority,
                     createdAt: serverTimestamp()
                 });
-                setTask('');
                 setPriority(1); // Reset to default priority
             } catch (error) {
                 console.error('Error adding document: ', error);
             }
+        } else {
+            alert('Please enter a task');
         }
     };
 
@@ -49,7 +53,7 @@ const TaskForm: React.FC = () => {
 
             {currentUser ? <Popover>
                 <PopoverTrigger asChild >
-                    <Button variant="outline" className=''>Add Task +</Button>
+                    <Button variant="outline" className='mb-5'>Add Task +</Button>
                 </PopoverTrigger >
                 <PopoverContent className="w-full p-4">
                     <Card>
@@ -81,7 +85,7 @@ const TaskForm: React.FC = () => {
                         </CardContent>
                     </Card>
                 </PopoverContent>
-            </Popover > : <p>Sign in to add tasks</p>}
+            </Popover > : <Hero />}
 
         </>
     );
