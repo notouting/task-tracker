@@ -18,9 +18,9 @@ const Header: React.FC = () => {
 
     return (
         <header className='w-full'>
-            <div className='container mx-auto flex justify-between items-center px-8'>
+            <div className='container mx-auto flex justify-between items-center px-8 max-[407px]:block'>
                 <a href='/'>
-                    <Image src={logo} alt="logo" width={48} height={48} />
+                    <Image src={logo} className='max-[407px]:mx-auto' alt="logo" width={48} height={48} />
                 </a>
                 <div className='flex gap-5'>
                     <ModeToggle />

@@ -18,6 +18,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import TaskListLoading from '@/components/TaskListLoading';
+import { SelectScrollUpButton } from '@radix-ui/react-select';
 
 interface Task {
     id: string;
@@ -77,40 +78,45 @@ const TaskList: React.FC = () => {
     });
 
     return (
-        <ul className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-            {loading ? <TaskListLoading /> : ''}
+        <ul className="grid gap-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+            {loading && <TaskListLoading />}
             {sortedTasks.map((task) => (
                 <Card
-                    key={task.id}
-                    className={`w-full border ${task.priority === 3
+                    key={task?.id}
+                    className={`w-full border ${task?.priority === 3
                         ? 'border-red-500'
-                        : task.priority === 2
+                        : task?.priority === 2
                             ? 'border-yellow-500'
                             : 'border-green-500'
-                        } ${task.completed ? 'opacity-60 bg-gray-200' : ''}`}
+                        } ${task?.completed ? 'opacity-60 bg-gray-200' : ''}`}
                 >
-                    <CardHeader className='flex justify-between w-full'>
-                        <h3 className={task.completed ? 'line-through text-gray-500' : ''}>{task.task}</h3>
-                        <CardDescription>
-                            {task.createdAt ? new Date(task.createdAt.seconds * 1000).toLocaleString('en-US', { hour12: false }) : 'Unknown'}
+                    <CardHeader className="flex justify-between">
+                        <h3 className={`text-lg font-semibold ${task?.completed ? 'line-through text-gray-500' : ''}`}>
+                            {task?.task}
+                        </h3>
+                        <CardDescription className="text-sm text-gray-500">
+                            {task?.createdAt ? new Date(task?.createdAt.seconds * 1000).toLocaleString('en-US', { hour12: false }) : 'Unknown'}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Select onValueChange={(value) => handleChangePriority(task.id, Number(value))} defaultValue={task.priority.toString()}>
+                        <Select
+                            onValueChange={(value) => handleChangePriority(task?.id, Number(value))}
+                            defaultValue={task?.priority.toString()}
+                        >
                             <SelectTrigger>
-                                <SelectValue placeholder="Select Priority" />
+                                <SelectValue onClick={() => console.log('first')} placeholder="Select Priority" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent onClick={() => console.log('first')}>
                                 <SelectItem value="3">High Priority</SelectItem>
                                 <SelectItem value="2">Medium Priority</SelectItem>
                                 <SelectItem value="1">Low Priority</SelectItem>
                             </SelectContent>
                         </Select>
-                        <div className='flex justify-between w-full mt-5'>
-                            <Button variant="ghost" onClick={() => handleToggleComplete(task.id, task.completed)}>
-                                {task.completed ? 'Uncomplete' : 'Complete'}
+                        <div className="flex justify-between mt-5">
+                            <Button variant="ghost" onClick={() => handleToggleComplete(task?.id, task?.completed)}>
+                                {task?.completed ? 'Uncomplete' : 'Complete'}
                             </Button>
-                            <Button variant="destructive" onClick={() => handleDelete(task.id)}>
+                            <Button variant="destructive" onClick={() => handleDelete(task?.id)}>
                                 Delete
                             </Button>
                         </div>
