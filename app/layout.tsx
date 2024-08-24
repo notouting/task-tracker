@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <AuthProvider>
-            <div className="w-full bg-[linear-gradient(90deg,#faaca8+10%,#ddd6f3+90%)] min-h-screen">
+            <div className="w-full bg-[#fde8e8] dark:bg-[#15151e] min-h-screen">
               <div className="container mx-auto ">
                 <Header />
                 <main>{children}</main>
