@@ -41,10 +41,10 @@ const Header: React.FC = () => {
                         </div>
                     ) : (
                         <div className='flex gap-5 items-center text-black'>
-                            <Link href="/signup">
+                            <Link className='text-black dark:text-white' href="/signup">
                                 Sign Up
                             </Link>
-                            <Link href="/login">
+                            <Link className='text-black dark:text-white' href="/login">
                                 Login
                             </Link>
                         </div>

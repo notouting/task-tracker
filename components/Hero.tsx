@@ -18,14 +18,14 @@ const Hero = () => {
                                 </svg>
                             </div>
                             <div className="flex flex-col items-center text-center justify-center">
-                                <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">Abdurazzoq Sultanov</h2>
+                                <h2 className="font-medium title-font mt-4 dark:text-white text-gray-900 text-lg">Abdurazzoq Sultanov</h2>
                                 <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                                 <p className="text-base">Software Frontend Developer telegram: @abdurazzoq_sultanov instagram: @notouting <br />  github : @notouting</p>
                             </div>
                         </div>
                         <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
                             <p className="leading-relaxed text-lg mb-4">Our task management app helps you organize and track your daily tasks with ease. Create, sort, and prioritize your tasks, mark them as completed, and stay on top of your schedule with an intuitive interface. With secure email sign-up, login, and password recovery, along with added SMS verification, your information stays safe. Start managing your tasks today and free up more time for what really matters.</p>
-                            <a href="/login" className="text-indigo-500 inline-flex items-center">Get Started
+                            <a href="/login" className="text-indigo-500 inline-flex items-center dark:text-white">Get Started
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                                 </svg>
